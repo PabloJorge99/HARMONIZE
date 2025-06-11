@@ -1,0 +1,1725 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harmonize | Corpo e Saúde</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --dark-gray: #333333;       /* Cinza Escuro */
+            --light-gray: #E0E0E0;      /* Cinza Claro */ 
+            --light-green: #C8E6C9;     /* Verde Claro */
+            --light-blue: #B3E5FC;      /* Azul Claro */
+            --turquoise: #4DB6AC;       /* Turquesa (Verde Água) */
+            --white: #FFFFFF;
+            --primary-color: var(--turquoise);
+            --secondary-color: var(--light-blue);
+            --accent-color: var(--light-green);
+            --text-color: var(--dark-gray);
+            --background-color: var(--white);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Landing Page Styles */
+        .landing-page {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        .landing-header {
+            background-color: var(--white);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+        
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .logo-text h1 {
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .logo-text span {
+            color: var(--dark-gray);
+            font-size: 0.9rem;
+            font-weight: 400;
+        }
+        
+        .landing-nav {
+            display: flex;
+            align-items: center;
+        }
+        
+        .landing-nav a {
+            margin-left: 25px;
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .landing-nav a:hover {
+            color: var(--primary-color);
+        }
+        
+        .landing-nav a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s;
+        }
+        
+        .landing-nav a:hover:after {
+            width: 100%;
+        }
+        
+        .landing-nav .login-btn {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .landing-nav .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+            color: white;
+        }
+        
+        .landing-nav .login-btn:after {
+            display: none;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            cursor: pointer;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(255,255,255,0.05)" d="M0,0 L100,0 L100,100 Q50,80 0,100 Z"></path></svg>');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-position: bottom;
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .hero h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            font-weight: 300;
+        }
+        
+        .cta-btn {
+            background-color: var(--accent-color);
+            color: var(--text-color);
+            padding: 15px 30px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .cta-btn i {
+            margin-left: 8px;
+            transition: transform 0.3s;
+        }
+        
+        .cta-btn:hover {
+            background-color: #A5D6A7;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+        }
+        
+        .cta-btn:hover i {
+            transform: translateX(3px);
+        }
+        
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 5rem 1rem;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            width: 100%;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h3 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h3:after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            bottom: -10px;
+            left: 25%;
+            background-color: var(--primary-color);
+        }
+        
+        .section-title p {
+            color: var(--dark-gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 2.5rem 2rem;
+            width: 350px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            background-color: var(--light-blue);
+            color: var(--primary-color);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            transition: all 0.3s;
+        }
+        
+        .feature-card:hover .feature-icon {
+            background-color: var(--primary-color);
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        .feature-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .feature-card p {
+            color: var(--dark-gray);
+            margin-bottom: 1.5rem;
+        }
+        
+        .about-section {
+            background-color: var(--light-gray);
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+        
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .about-content p {
+            margin-bottom: 1.5rem;
+            text-align: left;
+            line-height: 1.8;
+        }
+        
+        .about-content p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .contact-form {
+            background-color: var(--white);
+            padding: 5rem 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .form-container {
+            background-color: var(--light-gray);
+            border-radius: 12px;
+            padding: 3rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group {
+            flex: 1;
+            margin-bottom: 0;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--dark-gray);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(77, 182, 172, 0.2);
+            outline: none;
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+        
+        .submit-btn:hover {
+            background-color: #3DA89D;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .landing-footer {
+            background-color: var(--dark-gray);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-top: auto;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+            text-align: left;
+        }
+        
+        .footer-column h4 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-column p, .footer-column a {
+            color: var(--light-gray);
+            margin-bottom: 0.8rem;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column a:hover {
+            color: var(--primary-color);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-links a {
+            background-color: rgba(255,255,255,0.1);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: var(--light-gray);
+            font-size: 0.9rem;
+        }
+        
+        /* App Styles */
+        .app-container {
+            display: none;
+            min-height: 100vh;
+        }
+        
+        .sidebar {
+            width: 280px;
+            background-color: var(--dark-gray);
+            color: white;
+            padding: 2rem 1.5rem;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            transition: all 0.3s;
+            z-index: 10;
+        }
+        
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .sidebar-header img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        .sidebar-header h2 {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+        }
+        
+        .sidebar-menu {
+            list-style: none;
+        }
+        
+        .sidebar-menu li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .sidebar-menu a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            padding: 0.8rem 1rem;
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+        
+        .sidebar-menu a i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .sidebar-menu a:hover {
+            background-color: rgba(255,255,255,0.1);
+            color: var(--primary-color);
+        }
+        
+        .sidebar-menu .active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .main-content {
+            margin-left: 280px;
+            padding: 2rem;
+            width: calc(100% - 280px);
+            transition: all 0.3s;
+        }
+        
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+        
+        .user-info img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+            object-fit: cover;
+        }
+        
+        .logout-btn {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logout-btn i {
+            margin-right: 5px;
+        }
+        
+        .logout-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .card h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .card h2:after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-color);
+        }
+        
+        .radio-group {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .radio-option {
+            display: flex;
+            align-items: center;
+        }
+        
+        .radio-option input {
+            margin-right: 8px;
+        }
+        
+        .btn {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .btn i {
+            margin-right: 8px;
+        }
+        
+        .btn:hover {
+            background-color: #3DA89D;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .btn-secondary {
+            background-color: var(--light-gray);
+            color: var(--dark-gray);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #D0D0D0;
+            color: var(--dark-gray);
+        }
+        
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+        }
+        
+        .table th, .table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .table th {
+            background-color: var(--light-gray);
+            font-weight: 600;
+            color: var(--dark-gray);
+        }
+        
+        .table tr:hover {
+            background-color: rgba(200, 230, 201, 0.2);
+        }
+        
+        .alert {
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .alert-success {
+            background-color: rgba(200, 230, 201, 0.5);
+            color: #1B5E20;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .alert-info {
+            background-color: rgba(179, 229, 252, 0.5);
+            color: #01579B;
+            border-left: 4px solid var(--light-blue);
+        }
+        
+        .alert-error {
+            background-color: rgba(255, 205, 210, 0.5);
+            color: #C62828;
+            border-left: 4px solid #F44336;
+        }
+        
+        .file-upload {
+            border: 2px dashed var(--light-gray);
+            border-radius: 6px;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s;
+        }
+        
+        .file-upload:hover {
+            border-color: var(--primary-color);
+            background-color: rgba(200, 230, 201, 0.1);
+        }
+        
+        .file-upload input {
+            display: none;
+        }
+        
+        .file-upload label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            color: var(--dark-gray);
+        }
+        
+        .file-upload label i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .dica-item {
+            margin-bottom: 2rem;
+            animation: fadeIn 0.6s ease-out;
+        }
+        
+        .dica-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .dica-item h3 i {
+            margin-right: 10px;
+        }
+        
+        .dica-item p {
+            margin-bottom: 0.5rem;
+        }
+        
+        .dica-item .autor {
+            font-style: italic;
+            color: var(--dark-gray);
+            font-size: 0.9rem;
+        }
+        
+        .divider {
+            height: 1px;
+            background-color: var(--light-gray);
+            margin: 1.5rem 0;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .sidebar {
+                width: 250px;
+                transform: translateX(-250px);
+                position: fixed;
+            }
+            
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: fixed;
+                top: 20px;
+                left: 20px;
+                z-index: 20;
+                background-color: var(--primary-color);
+                color: white;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .form-group {
+                margin-bottom: 1.5rem;
+            }
+            
+            .landing-nav {
+                display: none;
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+            
+            .landing-nav.active {
+                display: flex;
+            }
+            
+            .landing-nav a {
+                margin: 0.5rem 0;
+                padding: 0.5rem;
+            }
+            
+            .mobile-menu-btn {
+                display: flex;
+            }
+            
+            .footer-column {
+                min-width: 100%;
+                text-align: center;
+            }
+            
+            .social-links {
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero {
+                padding: 4rem 1rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            .feature-card {
+                width: 100%;
+            }
+            
+            .card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Landing Page -->
+    <div class="landing-page" id="landingPage">
+        <header class="landing-header">
+            <a href="#" class="logo">
+                <img src="healtcore.png" alt="Harmonize Logo">
+                <div class="logo-text">
+                    <h1>HARMONIZE</h1>
+                    <span>Corpo e Saúde</span>
+                </div>
+            </a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav class="landing-nav" id="landingNav">
+                <a href="#features">Recursos</a>
+                <a href="#about">Sobre Nós</a>
+                <a href="#contact">Para Empresas</a>
+                <a href="#" class="login-btn" onclick="showLogin()">Acessar Sistema</a>
+            </nav>
+        </header>
+        
+        <section class="hero">
+            <div class="hero-content">
+                <h2>Sua saúde integral em um só lugar</h2>
+                <p>O sistema Harmonize oferece cuidados completos para o bem-estar dos colaboradores da sua empresa, promovendo equilíbrio entre corpo, mente e coração.</p>
+                <button class="cta-btn" onclick="showLogin()">Acessar o Sistema <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </section>
+        
+        <section class="features" id="features">
+            <div class="section-title">
+                <h3>Nossos Recursos</h3>
+                <p>Descubra como o sistema Harmonize pode transformar a saúde corporativa na sua empresa</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-calendar-check"></i>
+                </div>
+                <h3>Agendamento Online</h3>
+                <p>Marque consultas com médicos de diversas especialidades de forma rápida e fácil, diretamente pelo sistema.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-video"></i>
+                </div>
+                <h3>Atendimento Virtual</h3>
+                <p>Realize consultas online sem sair do trabalho ou de casa, com toda a comodidade e segurança.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-file-medical"></i>
+                </div>
+                <h3>Gestão de Atestados</h3>
+                <p>Envie atestados médicos digitalmente e facilite o processo de RH com nossa plataforma integrada.</p>
+            </div>
+        </section>
+        
+        <section class="about-section" id="about">
+            <div class="section-title">
+                <h3>Sobre Nós</h3>
+                <p>Conheça a história e a missão da Harmonize</p>
+            </div>
+            
+            <div class="about-content">
+                <p>Harmonize: Corpo e Saúde, nasceu do sonho de transformar vidas através do cuidado integral com o bem-estar. Fundada por uma equipe apaixonada por saúde e humanização, acredita que cada pessoa merece sentir-se plena, equilibrada e feliz.</p>
+                
+                <p>A Harmonize se dedicou a criar um ambiente acolhedor, onde cada paciente fosse tratado com carinho e atenção. Não era apenas sobre tratamentos ou consultas, mas sobre ouvir histórias, entender dores e celebrar conquistas.</p>
+                
+                <p>Ao longo dos anos, a Harmonize se tornou uma comunidade de pessoas que se apoiam mutuamente, reforçando a missão de promover saúde de forma humana e verdadeira. E assim, a empresa se consolidou como um símbolo de esperança, mostrando que o cuidado com o corpo e a alma caminham juntos. Sua jornada, leva amor, cuidado e esperança a todos que cruzam seu caminho, porque acredita que a verdadeira saúde nasce do equilíbrio entre corpo, mente e coração.</p>
+            </div>
+        </section>
+        
+        <section class="contact-form" id="contact">
+            <div class="section-title">
+                <h3>Para Empresas</h3>
+                <p>Interessado em levar o sistema Harmonize para sua empresa? Preencha o formulário abaixo e entraremos em contato.</p>
+            </div>
+            
+            <div class="form-container">
+                <form id="empresaForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="empresaNome">Nome da Empresa</label>
+                            <input type="text" id="empresaNome" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="empresaCNPJ">CNPJ</label>
+                            <input type="text" id="empresaCNPJ" class="form-control" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="contatoNome">Nome do Responsável</label>
+                            <input type="text" id="contatoNome" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contatoCargo">Cargo</label>
+                            <input type="text" id="contatoCargo" class="form-control" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="contatoEmail">Email</label>
+                            <input type="email" id="contatoEmail" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contatoTelefone">Telefone</label>
+                            <input type="tel" id="contatoTelefone" class="form-control" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="mensagem">Mensagem</label>
+                        <textarea id="mensagem" class="form-control" placeholder="Conte-nos sobre sua empresa e necessidades..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Enviar Solicitação <i class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </section>
+        
+        <footer class="landing-footer">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>Harmonize</h4>
+                    <p>Transformando vidas através do cuidado integral com o bem-estar, promovendo equilíbrio entre corpo, mente e coração.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Links Rápidos</h4>
+                    <a href="#features">Recursos</a>
+                    <a href="#about">Sobre Nós</a>
+                    <a href="#contact">Para Empresas</a>
+                    <a href="#" onclick="showLogin()">Acessar Sistema</a>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Contato</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Rua Saúde Integral, 123 - Centro</p>
+                    <p><i class="fas fa-phone"></i> (11) 1234-5678</p>
+                    <p><i class="fas fa-envelope"></i> contato@harmonize.com.br</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Harmonize - Corpo e Saúde. Todos os direitos reservados.</p>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- Login Form -->
+    <div class="app-container" id="loginForm" style="display: none;">
+        <div class="main-content" style="margin-left: 0; width: 100%; max-width: 500px; margin: 2rem auto;">
+            <div class="card">
+                <div style="text-align: center; margin-bottom: 1.5rem;">
+                    <img src="healtcore.png" alt="Harmonize Logo" style="height: 80px;">
+                    <h2 style="color: var(--primary-color); margin-top: 1rem;">Acessar Sistema</h2>
+                </div>
+                
+                <div class="form-group">
+                    <label for="loginEmail">Email corporativo</label>
+                    <input type="email" id="loginEmail" class="form-control" placeholder="seu@email.com">
+                </div>
+                
+                <button class="btn" style="width: 100%;" onclick="login()">
+                    <i class="fas fa-sign-in-alt"></i> Entrar
+                </button>
+                
+                <div id="loginMessage" style="margin-top: 1rem;"></div>
+                
+                <div style="text-align: center; margin-top: 1.5rem;">
+                    <button class="btn btn-secondary" onclick="showLandingPage()">
+                        <i class="fas fa-arrow-left"></i> Voltar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- App Interface -->
+    <div class="app-container" id="appInterface" style="display: none;">
+        <button class="mobile-menu-btn" id="appMenuBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <img src="healtcore.png" alt="Harmonize Logo">
+                <h2>HARMONIZE</h2>
+            </div>
+            
+            <ul class="sidebar-menu" id="menuFuncionario">
+                <li><a href="#" class="active" onclick="showSection('agendarConsulta')"><i class="fas fa-calendar-plus"></i> Agendar Consulta</a></li>
+                <li><a href="#" onclick="showSection('atendimentoOnline')"><i class="fas fa-video"></i> Atendimento Online</a></li>
+                <li><a href="#" onclick="showSection('meusAgendamentos')"><i class="fas fa-history"></i> Meus Agendamentos</a></li>
+                <li><a href="#" onclick="showSection('enviarAtestado')"><i class="fas fa-file-upload"></i> Enviar Atestado</a></li>
+                <li><a href="#" onclick="showSection('dicasSaude')"><i class="fas fa-heartbeat"></i> Dicas de Saúde</a></li>
+            </ul>
+            
+            <ul class="sidebar-menu" id="menuGestor" style="display: none;">
+                <li><a href="#" onclick="showSection('gestaoAtestados')"><i class="fas fa-file-medical"></i> Atestados</a></li>
+                <li><a href="#" onclick="showSection('dadosAtendimento')"><i class="fas fa-chart-bar"></i> Dados de Atendimento</a></li>
+            </ul>
+            
+            <button class="logout-btn" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i> Sair
+            </button>
+        </div>
+        
+        <div class="main-content" id="mainContent">
+            <div class="main-header">
+                <div class="user-info">
+                    <img src="https://ui-avatars.com/api/?name=Usuário&background=4DB6AC&color=fff" alt="Usuário">
+                    <div>
+                        <h3 id="userName">Usuário</h3>
+                        <small id="userEmail">usuario@empresa.com</small>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Funcionário Views -->
+            <div id="agendarConsulta">
+                <div class="card">
+                    <h2>Agendamento de Consulta</h2>
+                    
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="consultaOnline" name="tipoConsulta" value="Online" checked>
+                            <label for="consultaOnline">Online</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="consultaPresencial" name="tipoConsulta" value="Presencial">
+                            <label for="consultaPresencial">Presencial</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="dataConsulta">Data desejada</label>
+                        <input type="date" id="dataConsulta" class="form-control">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="horaConsulta">Horário</label>
+                        <input type="time" id="horaConsulta" class="form-control">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="motivoConsulta">Motivo da consulta</label>
+                        <textarea id="motivoConsulta" class="form-control" rows="3"></textarea>
+                    </div>
+                    
+                    <h3 style="margin-top: 1.5rem;">Escolha sua Especialidade e Médico</h3>
+                    
+                    <div class="form-group">
+                        <label for="especialidade">Especialidade</label>
+                        <select id="especialidade" class="form-control" onchange="updateMedicos()">
+                            <option value="Clínico Geral">Clínico Geral</option>
+                            <option value="Cardiologista">Cardiologista</option>
+                            <option value="Ortopedista">Ortopedista</option>
+                            <option value="Psicólogo">Psicólogo</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="medico">Médico</label>
+                        <select id="medico" class="form-control">
+                            <option value="Dr. João Silva">Dr. João Silva</option>
+                            <option value="Dra. Camila Rocha">Dra. Camila Rocha</option>
+                        </select>
+                    </div>
+                    
+                    <button class="btn" onclick="agendarConsulta()">
+                        <i class="fas fa-calendar-check"></i> Confirmar Agendamento
+                    </button>
+                    
+                    <div id="agendamentoMessage" style="margin-top: 1rem;"></div>
+                </div>
+            </div>
+            
+            <div id="atendimentoOnline" style="display: none;">
+                <div class="card">
+                    <h2>Chat com médico (simulado)</h2>
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle"></i> Seu médico entrará em contato no horário agendado.
+                    </div>
+                    <div class="form-group">
+                        <label for="mensagemAtendimento">Mensagem</label>
+                        <textarea id="mensagemAtendimento" class="form-control" rows="5" placeholder="Descreva seus sintomas ou dúvidas..."></textarea>
+                    </div>
+                    <button class="btn">
+                        <i class="fas fa-paper-plane"></i> Enviar Mensagem
+                    </button>
+                </div>
+            </div>
+            
+            <div id="meusAgendamentos" style="display: none;">
+                <div class="card">
+                    <h2>Histórico de Agendamentos</h2>
+                    <div id="listaAgendamentos">
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle"></i> Nenhum agendamento encontrado.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="enviarAtestado" style="display: none;">
+                <div class="card">
+                    <h2>Envio de Atestado Médico</h2>
+                    
+                    <div class="form-group">
+                        <label for="nomeFuncionario">Seu nome</label>
+                        <input type="text" id="nomeFuncionario" class="form-control" value="" readonly>
+                    </div>
+                    
+                    <div class="file-upload">
+                        <input type="file" id="arquivoAtestado" accept=".pdf,.png,.jpg,.jpeg">
+                        <label for="arquivoAtestado">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <span>Arraste e solte o arquivo do atestado aqui ou clique para selecionar</span>
+                            <small>(Formatos aceitos: PDF, PNG, JPG - Máx. 5MB)</small>
+                        </label>
+                    </div>
+                    
+                    <div id="fileInfo" style="display: none; margin-bottom: 1.5rem;">
+                        <p><strong>Arquivo selecionado:</strong> <span id="fileName"></span> (<span id="fileSize"></span>)</p>
+                    </div>
+                    
+                    <button class="btn" onclick="enviarAtestado()">
+                        <i class="fas fa-upload"></i> Enviar Atestado
+                    </button>
+                    
+                    <div id="atestadoMessage" style="margin-top: 1rem;"></div>
+                </div>
+            </div>
+            
+            <div id="dicasSaude" style="display: none;">
+                <div class="card">
+                    <h2><i class="fas fa-heartbeat"></i> Dicas de Saúde por nossos médicos</h2>
+                    
+                    <div class="dica-item">
+                        <h3><i class="fas fa-tint"></i> Importância da Hidratação</h3>
+                        <p>Beber pelo menos 2 litros de água por dia melhora o funcionamento do organismo e evita doenças renais. A hidratação adequada ajuda na digestão, regulação da temperatura corporal e transporte de nutrientes.</p>
+                        <p class="autor">Dr. João Silva - Clínico Geral</p>
+                    </div>
+                    
+                    <div class="divider"></div>
+                    
+                    <div class="dica-item">
+                        <h3><i class="fas fa-walking"></i> Caminhada diária de 30 minutos</h3>
+                        <p>A atividade física regular ajuda no controle do peso e reduz o risco de doenças cardíacas. Além disso, libera endorfinas que melhoram o humor e reduzem o estresse. Comece com pequenas caminhadas e aumente gradualmente.</p>
+                        <p class="autor">Dra. Paula Fernandes - Cardiologista</p>
+                    </div>
+                    
+                    <div class="divider"></div>
+                    
+                    <div class="dica-item">
+                        <h3><i class="fas fa-bed"></i> Sono e produtividade</h3>
+                        <p>Dormir de 7 a 8 horas por noite melhora o foco e reduz o estresse. Um sono de qualidade é essencial para a recuperação muscular, consolidação da memória e regulação hormonal. Crie uma rotina de sono regular e evite telas antes de dormir.</p>
+                        <p class="autor">Dra. Ana Souza - Psicóloga</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Gestor Views -->
+            <div id="gestaoAtestados" style="display: none;">
+                <div class="card">
+                    <h2>Atestados Recebidos</h2>
+                    <div id="listaAtestados">
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle"></i> Nenhum atestado enviado.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="dadosAtendimento" style="display: none;">
+                <div class="card">
+                    <h2>Resumo de Agendamentos</h2>
+                    <div id="resumoAtendimento">
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle"></i> Nenhum agendamento registrado.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Inicializa banco de dados
+        function initDatabase() {
+            if (!localStorage.getItem('harmonizeUsers')) {
+                localStorage.setItem('harmonizeUsers', JSON.stringify({
+                    "rh@empresa.com": { 
+                        tipo: "gestor", 
+                        nome: "Recursos Humanos",
+                        avatar: "https://ui-avatars.com/api/?name=RH&background=4DB6AC&color=fff"
+                    },
+                    "joao@empresa.com": { 
+                        tipo: "funcionario", 
+                        nome: "João Silva",
+                        avatar: "https://ui-avatars.com/api/?name=João+Silva&background=4DB6AC&color=fff"
+                    },
+                    "maria@empresa.com": { 
+                        tipo: "funcionario", 
+                        nome: "Maria Souza",
+                        avatar: "https://ui-avatars.com/api/?name=Maria+Souza&background=4DB6AC&color=fff"
+                    }
+                }));
+            }
+            
+            if (!localStorage.getItem('harmonizeAgendamentos')) {
+                localStorage.setItem('harmonizeAgendamentos', JSON.stringify([
+                    {
+                        email: "joao@empresa.com",
+                        nome: "João Silva",
+                        tipo: "Online",
+                        data: "2023-11-15",
+                        hora: "14:00",
+                        motivo: "Consulta de rotina",
+                        especialidade: "Clínico Geral",
+                        medico: "Dr. João Silva",
+                        status: "Agendado",
+                        dataCriacao: "2023-11-01T10:30:00"
+                    },
+                    {
+                        email: "maria@empresa.com",
+                        nome: "Maria Souza",
+                        tipo: "Presencial",
+                        data: "2023-11-20",
+                        hora: "10:30",
+                        motivo: "Avaliação cardíaca",
+                        especialidade: "Cardiologista",
+                        medico: "Dra. Paula Fernandes",
+                        status: "Realizado",
+                        dataCriacao: "2023-10-28T15:45:00"
+                    }
+                ]));
+            }
+            
+            if (!localStorage.getItem('harmonizeAtestados')) {
+                localStorage.setItem('harmonizeAtestados', JSON.stringify([
+                    {
+                        nome: "João Silva",
+                        email: "joao@empresa.com",
+                        data: "2023-10-05T14:30:00",
+                        nomeArquivo: "atestado_joao.pdf",
+                        tamanho: 102400,
+                        status: "Recebido"
+                    }
+                ]));
+            }
+        }
+        
+        // Médicos por especialidade
+        const medicosPorEspecialidade = {
+            "Clínico Geral": ["Dr. João Silva", "Dra. Camila Rocha"],
+            "Cardiologista": ["Dra. Paula Fernandes"],
+            "Ortopedista": ["Dr. Lucas Monteiro"],
+            "Psicólogo": ["Dra. Ana Souza", "Dr. Rafael Lima"]
+        };
+        
+        // Funções de navegação
+        function showLandingPage() {
+            document.getElementById('landingPage').style.display = 'flex';
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('appInterface').style.display = 'none';
+            document.getElementById('landingNav').classList.remove('active');
+        }
+        
+        function showLogin() {
+            document.getElementById('landingPage').style.display = 'none';
+            document.getElementById('loginForm').style.display = 'block';
+            document.getElementById('appInterface').style.display = 'none';
+            document.getElementById('loginEmail').value = '';
+            document.getElementById('loginMessage').innerHTML = '';
+            document.getElementById('landingNav').classList.remove('active');
+        }
+        
+        function showApp() {
+            document.getElementById('landingPage').style.display = 'none';
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('appInterface').style.display = 'flex';
+            
+            // Atualiza informações do usuário
+            if (currentUser) {
+                document.getElementById('userName').textContent = currentUser.nome;
+                document.getElementById('userEmail').textContent = currentUser.email;
+                document.getElementById('nomeFuncionario').value = currentUser.nome;
+                
+                if (currentUser.avatar) {
+                    document.querySelector('.user-info img').src = currentUser.avatar;
+                }
+            }
+        }
+        
+        function showSection(sectionId) {
+            // Esconde todas as seções
+            document.querySelectorAll('#mainContent > div').forEach(div => {
+                div.style.display = 'none';
+            });
+            
+            // Mostra a seção selecionada
+            document.getElementById(sectionId).style.display = 'block';
+            
+            // Atualiza menu ativo
+            document.querySelectorAll('.sidebar-menu a').forEach(a => {
+                a.classList.remove('active');
+            });
+            
+            // Marca o item do menu como ativo
+            let menuItems = document.querySelectorAll('.sidebar-menu a');
+            for (let i = 0; i < menuItems.length; i++) {
+                if (menuItems[i].getAttribute('onclick').includes(sectionId)) {
+                    menuItems[i].classList.add('active');
+                    break;
+                }
+            }
+            
+            // Carrega dados se necessário
+            if (sectionId === 'meusAgendamentos' || sectionId === 'dadosAtendimento') {
+                loadAgendamentos();
+            } else if (sectionId === 'gestaoAtestados' || sectionId === 'enviarAtestado') {
+                loadAtestados();
+            }
+        }
+        
+        function logout() {
+            currentUser = null;
+            showLandingPage();
+        }
+        
+        // Funções de negócio
+        function login() {
+            const email = document.getElementById('loginEmail').value.trim();
+            const users = JSON.parse(localStorage.getItem('harmonizeUsers'));
+            
+            if (!email) {
+                document.getElementById('loginMessage').innerHTML = '<div class="alert alert-error"><i class="fas fa-exclamation-circle"></i> Por favor, informe seu email.</div>';
+                return;
+            }
+            
+            if (users[email]) {
+                // Login bem-sucedido
+                currentUser = { email, ...users[email] };
+                
+                // Configura interface baseada no tipo de usuário
+                if (currentUser.tipo === 'gestor') {
+                    document.getElementById('menuFuncionario').style.display = 'none';
+                    document.getElementById('menuGestor').style.display = 'block';
+                    showSection('gestaoAtestados');
+                } else {
+                    document.getElementById('menuFuncionario').style.display = 'block';
+                    document.getElementById('menuGestor').style.display = 'none';
+                    showSection('agendarConsulta');
+                }
+                
+                showApp();
+            } else {
+                document.getElementById('loginMessage').innerHTML = '<div class="alert alert-error"><i class="fas fa-exclamation-circle"></i> Email não cadastrado no sistema.</div>';
+            }
+        }
+        
+        function updateMedicos() {
+            const especialidade = document.getElementById('especialidade').value;
+            const medicos = medicosPorEspecialidade[especialidade];
+            const selectMedico = document.getElementById('medico');
+            
+            // Limpa opções atuais
+            selectMedico.innerHTML = '';
+            
+            // Adiciona novas opções
+            medicos.forEach(medico => {
+                const option = document.createElement('option');
+                option.value = medico;
+                option.textContent = medico;
+                selectMedico.appendChild(option);
+            });
+        }
+        
+        function agendarConsulta() {
+            const tipo = document.querySelector('input[name="tipoConsulta"]:checked').value;
+            const data = document.getElementById('dataConsulta').value;
+            const hora = document.getElementById('horaConsulta').value;
+            const motivo = document.getElementById('motivoConsulta').value;
+            const especialidade = document.getElementById('especialidade').value;
+            const medico = document.getElementById('medico').value;
+            
+            if (!data || !hora || !motivo) {
+                document.getElementById('agendamentoMessage').innerHTML = '<div class="alert alert-error"><i class="fas fa-exclamation-circle"></i> Por favor, preencha todos os campos.</div>';
+                return;
+            }
+            
+            // Obtém agendamentos existentes
+            const agendamentos = JSON.parse(localStorage.getItem('harmonizeAgendamentos'));
+            
+            // Adiciona novo agendamento
+            agendamentos.push({
+                email: currentUser.email,
+                nome: currentUser.nome,
+                tipo,
+                data,
+                hora,
+                motivo,
+                especialidade,
+                medico,
+                status: 'Agendado',
+                dataCriacao: new Date().toISOString()
+            });
+            
+            // Atualiza localStorage
+            localStorage.setItem('harmonizeAgendamentos', JSON.stringify(agendamentos));
+            
+            document.getElementById('agendamentoMessage').innerHTML = '<div class="alert alert-success"><i class="fas fa-check-circle"></i> Consulta agendada com sucesso!</div>';
+            
+            // Limpa formulário
+            document.getElementById('motivoConsulta').value = '';
+            
+            // Atualiza lista se estiver na tela
+            if (document.getElementById('meusAgendamentos').style.display === 'block' || 
+                document.getElementById('dadosAtendimento').style.display === 'block') {
+                loadAgendamentos();
+            }
+        }
+        
+        function loadAgendamentos() {
+            const agendamentos = JSON.parse(localStorage.getItem('harmonizeAgendamentos'));
+            const container = document.getElementById('listaAgendamentos');
+            const isGestor = currentUser.tipo === 'gestor';
+            
+            let userAgendamentos;
+            if (isGestor) {
+                // RH vê todos os agendamentos
+                userAgendamentos = agendamentos;
+            } else {
+                // Funcionário vê apenas os seus
+                userAgendamentos = agendamentos.filter(a => a.email === currentUser.email);
+            }
+            
+            if (!userAgendamentos || userAgendamentos.length === 0) {
+                container.innerHTML = '<div class="alert alert-info"><i class="fas fa-info-circle"></i> Nenhum agendamento encontrado.</div>';
+                return;
+            }
+            
+            // Ordena por data mais recente
+            userAgendamentos.sort((a, b) => new Date(b.dataCriacao) - new Date(a.dataCriacao));
+            
+            let html = '<table class="table"><thead><tr>';
+            
+            if (isGestor) {
+                html += '<th>Funcionário</th>';
+            }
+            
+            html += '<th>Data</th><th>Hora</th><th>Médico</th><th>Especialidade</th><th>Tipo</th><th>Status</th></tr></thead><tbody>';
+            
+            userAgendamentos.forEach(agendamento => {
+                html += `<tr>`;
+                
+                if (isGestor) {
+                    html += `<td>${agendamento.nome} (${agendamento.email})</td>`;
+                }
+                
+                html += `<td>${formatDate(agendamento.data)}</td>
+                    <td>${agendamento.hora}</td>
+                    <td>${agendamento.medico}</td>
+                    <td>${agendamento.especialidade}</td>
+                    <td>${agendamento.tipo}</td>
+                    <td>${agendamento.status}</td>
+                </tr>`;
+            });
+            
+            html += '</tbody></table>';
+            container.innerHTML = html;
+        }
+        
+        function enviarAtestado() {
+            const nome = document.getElementById('nomeFuncionario').value.trim();
+            const fileInput = document.getElementById('arquivoAtestado');
+            
+            if (!fileInput.files || fileInput.files.length === 0) {
+                document.getElementById('atestadoMessage').innerHTML = '<div class="alert alert-error"><i class="fas fa-exclamation-circle"></i> Por favor, selecione um arquivo.</div>';
+                return;
+            }
+            
+            const file = fileInput.files[0];
+            const fileName = file.name;
+            const fileSize = file.size;
+            
+            // Verifica tamanho máximo (5MB)
+            if (fileSize > 5 * 1024 * 1024) {
+                document.getElementById('atestadoMessage').innerHTML = '<div class="alert alert-error"><i class="fas fa-exclamation-circle"></i> O arquivo não pode ser maior que 5MB.</div>';
+                return;
+            }
+            
+            // Obtém atestados existentes
+            const atestados = JSON.parse(localStorage.getItem('harmonizeAtestados'));
+            
+            // Adiciona novo atestado
+            atestados.push({
+                nome: currentUser.nome,
+                email: currentUser.email,
+                data: new Date().toISOString(),
+                nomeArquivo: fileName,
+                tamanho: fileSize,
+                status: "Recebido"
+            });
+            
+            // Atualiza localStorage
+            localStorage.setItem('harmonizeAtestados', JSON.stringify(atestados));
+            
+            document.getElementById('atestadoMessage').innerHTML = '<div class="alert alert-success"><i class="fas fa-check-circle"></i> Atestado enviado com sucesso!</div>';
+            
+            // Limpa formulário
+            fileInput.value = '';
+            document.getElementById('fileInfo').style.display = 'none';
+            
+            // Atualiza lista se estiver na tela
+            if (document.getElementById('gestaoAtestados').style.display === 'block') {
+                loadAtestados();
+            }
+        }
+        
+        function loadAtestados() {
+            const atestados = JSON.parse(localStorage.getItem('harmonizeAtestados'));
+            const container = document.getElementById('listaAtestados');
+            const isGestor = currentUser.tipo === 'gestor';
+            
+            let userAtestados;
+            if (isGestor) {
+                // RH vê todos os atestados
+                userAtestados = atestados;
+            } else {
+                // Funcionário vê apenas os seus
+                userAtestados = atestados.filter(a => a.email === currentUser.email);
+            }
+            
+            if (!userAtestados || userAtestados.length === 0) {
+                container.innerHTML = '<div class="alert alert-info"><i class="fas fa-info-circle"></i> Nenhum atestado encontrado.</div>';
+                return;
+            }
+            
+            // Ordena por data mais recente
+            userAtestados.sort((a, b) => new Date(b.data) - new Date(a.data));
+            
+            let html = '';
+            
+            userAtestados.forEach((atestado, index) => {
+                html += `<div class="card" style="margin-bottom: 1rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                        <div>
+                            <strong>${atestado.nome}</strong> ${isGestor ? `(${atestado.email})` : ''}
+                        </div>
+                        <span style="font-size: 0.9rem; color: #666;">${formatDateTime(atestado.data)}</span>
+                    </div>
+                    
+                    <div style="margin-bottom: 0.5rem;">
+                        <strong>Arquivo:</strong> ${atestado.nomeArquivo} (${formatFileSize(atestado.tamanho)})
+                    </div>
+                    
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="padding: 4px 8px; background-color: ${atestado.status === 'Recebido' ? '#C8E6C9' : '#B3E5FC'}; 
+                            color: ${atestado.status === 'Recebido' ? '#1B5E20' : '#01579B'}; 
+                            border-radius: 4px; font-size: 0.8rem;">
+                            ${atestado.status}
+                        </span>
+                        
+                        <button class="btn" style="padding: 5px 10px; font-size: 0.9rem;">
+                            <i class="fas fa-download"></i> Baixar
+                        </button>
+                    </div>
+                </div>`;
+            });
+            
+            container.innerHTML = html;
+        }
+        
+        // Funções auxiliares
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('pt-BR');
+        }
+        
+        function formatDateTime(dateTimeString) {
+            const date = new Date(dateTimeString);
+            return date.toLocaleString('pt-BR');
+        }
+        
+        function formatFileSize(bytes) {
+            if (bytes < 1024) return bytes + ' bytes';
+            else if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+            else return (bytes / 1048576).toFixed(1) + ' MB';
+        }
+        
+        // Manipulação de eventos
+        document.getElementById('arquivoAtestado').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                document.getElementById('fileName').textContent = file.name;
+                document.getElementById('fileSize').textContent = formatFileSize(file.size);
+                document.getElementById('fileInfo').style.display = 'block';
+            }
+        });
+        
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            document.getElementById('landingNav').classList.toggle('active');
+        });
+        
+        document.getElementById('appMenuBtn').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.toggle('active');
+        });
+        
+        document.getElementById('empresaForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Obrigado pelo seu interesse! Entraremos em contato em breve.');
+            this.reset();
+        });
+        
+        // Inicialização
+        let currentUser = null;
+        initDatabase();
+        showLandingPage();
+    </script>
+</body>
+</html>
